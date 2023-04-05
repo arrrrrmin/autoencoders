@@ -26,8 +26,7 @@ def _train(
 
 
 def build_logger(model_type: str, datamodule_name: str, task: Optional[str] = None):
-    script_path = os.path.dirname(__file__)
-    log_dir = os.path.normpath(os.path.join(script_path, "../../", "logs", datamodule_name))
+    log_dir = os.path.normpath(os.path.join(os.getcwd(), "logs", datamodule_name))
     task = task if task else "featureExtraction"
     experiment_name = f"{model_type}_{task}"
     return loggers.tensorboard.TensorBoardLogger(log_dir, experiment_name)
