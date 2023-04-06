@@ -99,7 +99,7 @@ class AutoEncoder(pl.LightningModule):
                 f"{mode}/reconstructions", comparison, self.global_step
             )
         if isinstance(self.bottleneck, SparseBottleneck):
-            latent_influence = self.decoder(torch.eye(20).to(self.device)).detach().cpu()
+            latent_influence = self.decoder(torch.eye(self.decoder.latent_dim).to(self.device)).detach().cpu()
             if self.prevent_tb_logging:
                 self._plot_images(f"{mode}/latent-influence", latent_influence)
             else:

@@ -18,7 +18,6 @@ class DeepEncoder(nn.Module):
         self.num_layers = num_layers
         self.latent_dim = latent_dim
         self.layers = self._build_layers()
-        print(self.layers)
 
     def _build_layers(self) -> nn.Sequential:
         units = self._get_units()
