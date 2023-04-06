@@ -22,6 +22,11 @@ In case I got something wrong, please open an issue, so I can fix it. This repos
 work in progress, which means there will be more autoencoders added as soon as I find time to 
 learn about them (e.g. VEA / BVEA).
 
+## Requirements
+
+This repo is only tested for `>= python3.9, <= python3.11`. Please make sure your machine
+is running a compatible python version (recommending `3.9`).  
+
 ## Installation
 
 ### Get poetry
@@ -40,7 +45,7 @@ curl -sSL https://install.python-poetry.org | python3 -
 Invoke poetry install, the rest will be taken care of.
 
 ```
-git clone autoencoder
+git clone https://github.com/arrrrrmin/autoencoders.git
 cd autoencoder
 poetry install .
 poetry run which python
@@ -48,16 +53,34 @@ poetry run which python
 # Ok your good to go.
 ```
 
+### Alternative installation
+
+Clone the repo and cd into it and run:
+```
+git clone https://github.com/arrrrrmin/autoencoders.git
+cd autoencoder
+python3 -m venv env
+source env/bin/activate
+python3 -m pip install -r requirements.txt
+```
+In this case poetry does not play any role, as long as the environment is activated, your fine.
+
 ## Usage
+
+#### Run an experiment
+
+Following commands assume you'r in the root of the repo.
+
+* `python3 -m autoencoder.scripts.run` - Open the file and uncomment/edit line and hyperparameters.
+* `poetry run python3 -m autoencoder.scripts.run` - Will do the same with poetry running on the machine.
+* While the experiment is running execute `tensorboard --logdir logs`, here you have a dashboard to look after your experiment.
+
+You can also do this in `jupyter`, but beaware if something fails the kernel needs a restart.
 
 ### Jupyter notebooks
 
 In case the poetry installation is successfull, one can simply use the notebooks locally 
-with ``poetry run jupyter``.
+with ``poetry run jupyter notebook``.
 
-### Local development
-
-In case you fork the repo, there's a `scripts` folder in the root directory. 
-Call for example ``poetry run python -m autoencoders.scripts.download_mnist``.
-Experiments can be reproduced using the main entry in 
-[``autoencoders/scripts/run``](autoencoders/scripts/run.py).
+When you'r working with a standard python environment you can execute scripts like so:
+`jupyter notebook`
